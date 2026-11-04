@@ -60,7 +60,7 @@ function submitRSVP(p) {
     if (attending && !names) throw new Error('Vul de namen van de volwassen gasten in.');
     // Each adult is entered on a separate line. A plus-one is entered separately,
     // but MUST be included in the total number of adults (maxAdults includes plus-one).
-    const namedAdults = attending ? names.split(/\\r?\\n/).map(n => n.trim()).filter(Boolean) : [];
+    const namedAdults = attending ? names.split(/\r?\n/).map(n => n.trim()).filter(Boolean) : [];
     if (attending && namedAdults.length !== adults - (plusOneUsed ? 1 : 0)) {
       throw new Error('Het aantal namen klopt niet. Vul één volwassen naam per regel in; tel de plus-one mee bij het aantal volwassenen, maar vul diens naam alleen in bij plus-one.');
     }
