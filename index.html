@@ -110,6 +110,24 @@ section:not(.hero):before{content:"";position:absolute;top:0;left:50%;width:130p
 #invitation{background:linear-gradient(#f6ecdd,#fffaf3)}
 #invitation .envelope{filter:drop-shadow(0 14px 17px #77634835)}
 @media(max-width:650px){.hero{padding:25px 10px;min-height:85svh}.hero-border{padding:100px 25px;min-height:76svh;outline-offset:-10px}.hero-border h1{font-size:clamp(57px,14vw,85px)}.hero-border:before,.hero-border:after{width:160px;height:200px;opacity:.4}.hero-border:before{top:-8px;left:-8px}.hero-border:after{bottom:-8px;right:-8px}.hero-border .date{letter-spacing:.12em}}
+
+/* Fine-art backdrop shared by the two invitation variants */
+.hero{background:#f2e5d5 url('assets/romantic-arch.svg') center center / cover no-repeat;min-height:100svh}
+.hero-border{background:linear-gradient(180deg,#fffaf3e8,#fffaf0de);backdrop-filter:blur(2px);border:1px solid #b89562;outline:1px solid #d8b98b;box-shadow:0 25px 85px #7e624b33,0 0 0 9px #fff7ec4a;min-height:min(72svh,650px);width:min(82%,840px)}
+.hero-border:before,.hero-border:after{opacity:.22}
+.gate{background:linear-gradient(#fff9f2b0,#f9f0e3bc),url('assets/romantic-arch.svg') center/cover no-repeat}
+.gate-scene:before{border:1px solid #c3a16c;background:linear-gradient(#fff8e75c,#fff9ef52);box-shadow:0 12px 65px #9d806a33;z-index:-1}
+.gate-blooms{display:none}
+.gate-envelope{filter:drop-shadow(0 24px 27px #59463166)}
+.gate-envelope-back{background:linear-gradient(145deg,#fffdf6,#ebd8bc)}
+.gate-flap{background:linear-gradient(170deg,#fff8ea,#e8cfab)}
+.gate-envelope-front{background:linear-gradient(135deg,#fdf7ed,#e5cfaf)}
+.gate-open{margin-top:65px;border-radius:50px;padding:16px 36px;background:linear-gradient(120deg,#9a7847,#c5a66e,#977244);color:#fffaf2;box-shadow:0 9px 23px #7555344a}
+.gate-open:hover{background:linear-gradient(120deg,#ad8953,#d5b981,#aa8552)}
+.gate-seal{background:radial-gradient(circle at 30% 20%,#f9e3b1,#b08a4b 60%,#8c6634);border:4px double #fce8bb}
+.gate-letter{background:radial-gradient(ellipse at center,#fffefb,#f4e3d5)}
+.gate-letter-border:before,.gate-letter-border:after{content:'❦';color:#b79866;font-size:25px;line-height:1}
+@media(max-width:700px){.hero{background-position:center center}.hero-border{width:92%;min-height:76svh;padding:90px 25px;background:#fff9f0e8}.gate-scene{width:96vw}.gate-envelope{width:84vw}}
 </style></head>
 <body><div id="gate" class="gate"><div class="gate-scene"><div class="gate-blooms blooms-top" aria-hidden="true">✿ <span>❀</span> ✿</div><div class="gate-envelope" aria-hidden="true"><div class="gate-envelope-back"></div><div class="gate-letter"><div class="gate-letter-border"><div class="gate-letter-kicker">THE WEDDING OF</div><div class="gate-letter-names">Yasmina <em>&</em> Mario</div><div class="gate-letter-divider">✦</div><div class="gate-letter-date">30 OCTOBER 2027</div></div></div><div class="gate-flap"></div><div class="gate-envelope-front"></div><div class="gate-seal">Y<span>&</span>M</div></div><div class="gate-blooms blooms-bottom" aria-hidden="true">✿ <span>❀</span> ✿</div><button id="unseal" class="gate-open" data-t="open">Open de uitnodiging</button></div></div><header><a href="#top" class="monogram">Y <em>&</em> M</a><nav class="languages" aria-label="Language"><button data-lang="nl" class="selected">NL</button><button data-lang="en">EN</button><button data-lang="ar">عربي</button></nav></header><main id="top">
 <section class="hero"><div class="hero-border"><div class="flourish topflourish">❦</div><p class="kicker" data-t="invite">Together with their families</p><h1>Yasmina <em>&</em> Mario</h1><div class="line"></div><p class="date" data-t="date">Zaterdag 30 oktober 2027</p><p class="lead" data-t="chapter">A beautiful new chapter begins</p><button class="btn" id="open" data-t="open">Open de uitnodiging</button><div class="flourish bottomflourish">❦</div></div></section>
