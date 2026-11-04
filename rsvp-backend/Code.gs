@@ -12,8 +12,11 @@ const SPREADSHEET_ID = '1JbD5CiKWCqY1Cug1NbKdt9ozEotfx--ooj-NRNhkqQw';
 const INVITES_TAB = 'Uitnodigingen';
 const RESPONSES_TAB = 'Reacties';
 
-function doGet() {
-  return HtmlService.createHtmlOutput(RSVP_HTML_())
+function doGet(e) {
+  // Invitation type only affects explanatory text, never guest authorization.
+  // Both URLs save into the same private spreadsheet ID.
+  const ceremonyVariant = !!(e && e.parameter && e.parameter.ceremony === 'yes');
+  return HtmlService.createHtmlOutput(RSVP_HTML_(ceremonyVariant))
     .setTitle('Yasmina & Mario — RSVP')
     .addMetaTag('viewport', 'width=device-width, initial-scale=1')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
@@ -86,10 +89,10 @@ function clean_(x,max) {
   // Prevent spreadsheet formula injection when user content is stored.
   return /^[=+@\-]/.test(s) ? "'" + s : s;
 }
-function RSVP_HTML_() {
+function RSVP_HTML_(ceremonyVariant) {
   return `<!doctype html><html lang="nl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>*,*:before,*:after{box-sizing:border-box}body{margin:0;color:#493d33;background:#ede7dd;font:14px/1.65 "DM Sans",sans-serif}main{max-width:640px;padding:14px 18px 40px;margin:auto}h1{font:normal 65px/1 "Cormorant Garamond",serif;text-align:center;margin:10px 0}p.intro{text-align:center;font:23px "Cormorant Garamond",serif}label{display:block;margin:16px 0 6px;font-weight:600;letter-spacing:.06em;font-size:11px;text-transform:uppercase}input,select,textarea{width:100%;background:#fffdf7;border:1px solid #b9a185;color:#493d33;border-radius:0;padding:12px;font:inherit}textarea{min-height:70px;resize:vertical}button{width:100%;padding:15px;background:#493d33;color:white;border:0;letter-spacing:.1em;text-transform:uppercase;margin-top:20px;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.tip{font-size:12px;color:#796555}.kicker{text-align:center;letter-spacing:.25em;font-size:10px;text-transform:uppercase}#out{margin:18px 0;font-weight:600}#out.error{color:#943d32}#out.success{color:#3b6846}[hidden]{display:none!important}</style></head><body><main><div class="kicker">YASMINA & MARIO · 30.10.2027</div><h1>Kindly Reply</h1><p class="intro">We hopen jullie te zien op onze grote dag.</p>
+  <style>*,*:before,*:after{box-sizing:border-box}body{margin:0;color:#493d33;background:#ede7dd;font:14px/1.65 "DM Sans",sans-serif}main{max-width:640px;padding:14px 18px 40px;margin:auto}h1{font:normal 65px/1 "Cormorant Garamond",serif;text-align:center;margin:10px 0}p.intro{text-align:center;font:23px "Cormorant Garamond",serif}label{display:block;margin:16px 0 6px;font-weight:600;letter-spacing:.06em;font-size:11px;text-transform:uppercase}input,select,textarea{width:100%;background:#fffdf7;border:1px solid #b9a185;color:#493d33;border-radius:0;padding:12px;font:inherit}textarea{min-height:70px;resize:vertical}button{width:100%;padding:15px;background:#493d33;color:white;border:0;letter-spacing:.1em;text-transform:uppercase;margin-top:20px;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.tip{font-size:12px;color:#796555}.kicker{text-align:center;letter-spacing:.25em;font-size:10px;text-transform:uppercase}#out{margin:18px 0;font-weight:600}#out.error{color:#943d32}#out.success{color:#3b6846}[hidden]{display:none!important}</style></head><body><main><div class="kicker">YASMINA & MARIO · 30.10.2027</div><h1>Kindly Reply</h1><p class="intro">We hopen jullie te zien op onze grote dag.</p><p class="tip" style="text-align:center">${ceremonyVariant ? 'Deze uitnodiging bevat ook de kerkelijke ceremonie. Het systeem controleert jullie uitnodigingscode; de kerk is uitsluitend voor persoonlijk uitgenodigde gasten.' : 'Uitnodiging voor het feest. Alleen gasten die ook voor de kerk zijn uitgenodigd ontvangen daarvoor de aanvullende informatie.'}</p>
   <form id="f"><label for="code">Persoonlijke uitnodigingscode *</label><input name="code" id="code" required maxlength="30" autocomplete="off" placeholder="YM-0001"><p class="tip">Gebruik de code van jullie uitnodiging. Met dezelfde code kun je later je antwoord wijzigen.</p>
   <label for="name">Naam contactpersoon *</label><input id="name" name="name" required maxlength="150" autocomplete="name">
   <label for="email">E-mailadres *</label><input id="email" name="email" type="email" required maxlength="200" autocomplete="email">
