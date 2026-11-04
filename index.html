@@ -40,7 +40,7 @@ h2{color:#806b51}
 #rsvpFrame{max-width:100%!important}
 section:not(.hero){position:relative}
 section:not(.hero):before{content:"";position:absolute;top:0;left:50%;width:130px;height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#b3985e80,transparent)}
-.motion-ready .motion-item{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.motion-ready .motion-item{opacity:0;transform:translateY(38px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms)}
 .motion-ready .motion-item.in-view{opacity:1;transform:translateY(0)}
 @media(max-width:650px){.hero-border:before{top:52px}.hero-border:after{bottom:49px}.panel:hover{transform:none}#rsvpLive{padding:6px}}
 @media(prefers-reduced-motion:reduce){.motion-ready .motion-item{opacity:1;transform:none;transition:none}}
@@ -220,15 +220,16 @@ if(!churchVersion){document.getElementById('venues').style.gridTemplateColumns='
 
 setLang('nl');
 
-/* Reveal only on scroll; do not hide content if IntersectionObserver is unavailable. */
+/* Scroll reveals on both URL variants. Keep content visible if scripting fails. */
 (function(){
  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
- const nodes=[...document.querySelectorAll('section h2, section .kicker, section .panel, section .programme article, section .story article, section .photo-strip, section .practical details')];
- nodes.forEach(el=>el.classList.add('motion-item'));
+ const nodes=[...document.querySelectorAll('main section h2, main section .kicker, main section .panel, main section .programme article, main section .story article, main section .photo-strip, main section .practical details, main section .lead, main section .venue-art')];
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
   if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}
- }),{threshold:.07,rootMargin:'0px 0px -25px 0px'});
- nodes.forEach(el=>observer.observe(el));
+ }),{threshold:0,rootMargin:'0px 0px -35px 0px'});
+ nodes.forEach((el,i)=>{el.classList.add('motion-item');el.style.setProperty('--reveal-delay',Math.min(i%3,2)*85+'ms');observer.observe(el)});
  document.body.classList.add('motion-ready');
+ // Fallback for unusual embedded browsers where observer events are delayed.
+ window.addEventListener('scroll',()=>{nodes.forEach(el=>{if(!el.classList.contains('in-view')&&el.getBoundingClientRect().top<innerHeight-35)el.classList.add('in-view')})},{passive:true});
 })();
 </script></body></html>
