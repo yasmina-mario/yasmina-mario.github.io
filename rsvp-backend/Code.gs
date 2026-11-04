@@ -47,9 +47,14 @@ function submitRSVP(p) {
     const attending = p.attendance === 'Ja';
     const adults = attending ? Number(p.adults) : 0;
     const children = attending ? Number(p.children) : 0;
+    const babiesWithoutSeat = attending ? Number(p.babiesWithoutSeat) : 0;
     if (!Number.isInteger(adults) || !Number.isInteger(children) || adults < (attending ? 1 : 0) || adults > maxAdults || children < 0 || children > 20) {
       throw new Error('Controleer het aantal gasten. Het maximum volwassenen staat op jullie uitnodiging.');
     }
+    if (!Number.isInteger(babiesWithoutSeat) || babiesWithoutSeat < 0 || babiesWithoutSeat > children) {
+      throw new Error('Het aantal baby’s zonder eigen stoel moet tussen 0 en het totale aantal kinderen liggen.');
+    }
+    const seatsNeeded = adults + children - babiesWithoutSeat;
     const plusOneUsed = attending && p.plusOne === true;
     if (plusOneUsed && !plusAllowed) throw new Error('Een extra gast is niet toegestaan voor deze uitnodiging.');
     const plusOneName = plusOneUsed ? clean_(p.plusOneName, 150) : '';
@@ -76,7 +81,7 @@ function submitRSVP(p) {
       plusOneUsed ? 'Ja' : 'Nee', plusOneName,
       clean_(p.diet, 1000), clean_(p.accessibility, 1000),
       clean_(p.message, 1500), now,
-      index > 0 ? 'Gewijzigd' : 'Nieuw'
+      index > 0 ? 'Gewijzigd' : 'Nieuw', babiesWithoutSeat, seatsNeeded
     ];
     if (index > 0) responses.getRange(index + 1, 1, 1, row.length).setValues([row]);
     else responses.appendRow(row);
@@ -107,7 +112,8 @@ function RSVP_HTML_(ceremonyVariant) {
   <div id="more" hidden><label for="adults">Totaal aantal volwassenen (inclusief eventuele plus-one) *</label><input id="adults" name="adults" type="number" value="1" min="1" max="20">
   <label for="adultNames">Namen volwassenen (zonder eventuele plus-one) *</label><textarea id="adultNames" name="adultNames" placeholder="Eén naam per regel; plus-one apart invullen"></textarea>
   <label for="children">Aantal kinderen (alle kinderen welkom)</label><input id="children" name="children" type="number" value="0" min="0" max="20">
-  <label for="childNames">Namen van de kinderen</label><textarea id="childNames" name="childNames"></textarea>
+  <label for="babiesWithoutSeat">Waarvan baby's die op schoot zitten (geen eigen stoel)</label><input id="babiesWithoutSeat" name="babiesWithoutSeat" type="number" value="0" min="0" max="20"><p class="tip">Geef het aantal kinderen inclusief baby's op. Trek alleen de baby's zonder eigen stoel af van het aantal benodigde stoelen. Een kinderstoel telt wel als een stoel.</p>
+  <label for="childNames">Namen van de kinderen (inclusief baby's)</label><textarea id="childNames" name="childNames"></textarea>
   <label for="plusOne">Staat op jullie uitnodiging dat een extra gast is toegestaan?</label><select id="plusOne" name="plusOne"><option value="Nee">Nee</option><option value="Ja">Ja</option></select>
   <div id="plusFields" hidden><label for="plusOneName">Naam van extra gast *</label><input id="plusOneName" name="plusOneName"></div>
   <p class="tip">Een plus-one telt mee in het totaal aantal volwassenen en in het maximale aantal op jullie uitnodiging. Geef diens naam alleen op in het plus-one-veld, niet dubbel in de namenlijst. Het systeem controleert de toestemming.</p>
@@ -121,6 +127,7 @@ function RSVP_HTML_(ceremonyVariant) {
   document.getElementById('plusOne').onchange=e=>{document.getElementById('plusFields').hidden=e.target.value!=='Ja'};
   f.onsubmit=e=>{e.preventDefault();const btn=document.getElementById('send');if(!f.reportValidity())return;btn.disabled=true;out.textContent='We verwerken jullie antwoord…';out.className='';
   const d=Object.fromEntries(new FormData(f));d.plusOne=d.plusOne==='Ja';
+  if(d.attendance==='Ja' && Number(d.babiesWithoutSeat)>Number(d.children)){btn.disabled=false;out.className='error';out.textContent='Het aantal baby’s zonder stoel mag niet hoger zijn dan het aantal kinderen.';return;}
   google.script.run.withSuccessHandler(result=>{btn.disabled=false;out.className='success';out.textContent=result.message;f.reset();more.hidden=true;document.getElementById('plusFields').hidden=true})
   .withFailureHandler(err=>{btn.disabled=false;out.className='error';out.textContent=err && err.message ? err.message : 'Er is iets misgegaan. Probeer opnieuw.'}).submitRSVP(d)};
   <\/script></body></html>`;
