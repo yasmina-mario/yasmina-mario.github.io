@@ -39,7 +39,7 @@ document.getElementById('church-panel').hidden=!churchVersion;
 if(!churchVersion){document.getElementById('venues').style.gridTemplateColumns='1fr';document.getElementById('venues').classList.add('venue-only')}
 setLang('nl');
 // Set this after Google Apps Script web-app deployment and successful end-to-end test.
-const RSVP_WEBAPP_URL = "";
+const RSVP_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxi6reJm03C7wFfx8WyVsFWsEex0rth1GWUht4OcEnplSzmgcPVzvB9r-EXWTNk4MIc/exec";
 if(RSVP_WEBAPP_URL.startsWith("https://script.google.com/macros/s/")){
  // Both invitation links use the same deployed web app and the same private Google Sheet.
  // The ceremony flag changes only the presentation; access to the ceremony is
