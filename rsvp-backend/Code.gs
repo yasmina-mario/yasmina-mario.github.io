@@ -54,9 +54,16 @@ function submitRSVP(p) {
     if (plusOneUsed && !plusAllowed) throw new Error('Een extra gast is niet toegestaan voor deze uitnodiging.');
     const plusOneName = plusOneUsed ? clean_(p.plusOneName, 150) : '';
     if (plusOneUsed && !plusOneName) throw new Error('Vul de naam van je extra gast in.');
+    if (plusOneUsed && adults < 2) throw new Error('Een plus-one telt mee als volwassene. Kies minimaal 2 volwassenen.');
     const names = clean_(p.adultNames, 600);
     const childNames = clean_(p.childNames, 600);
     if (attending && !names) throw new Error('Vul de namen van de volwassen gasten in.');
+    // Each adult is entered on a separate line. A plus-one is entered separately,
+    // but MUST be included in the total number of adults (maxAdults includes plus-one).
+    const namedAdults = attending ? names.split(/\\r?\\n/).map(n => n.trim()).filter(Boolean) : [];
+    if (attending && namedAdults.length !== adults - (plusOneUsed ? 1 : 0)) {
+      throw new Error('Het aantal namen klopt niet. Vul één volwassen naam per regel in; tel de plus-one mee bij het aantal volwassenen, maar vul diens naam alleen in bij plus-one.');
+    }
     if (attending && children > 0 && !childNames) throw new Error('Vul de namen van de kinderen in.');
     const previous = responses.getDataRange().getDisplayValues();
     const index = previous.findIndex((r,i)=>i>0 && String(r[2]).trim().toUpperCase()===code);
@@ -97,13 +104,13 @@ function RSVP_HTML_(ceremonyVariant) {
   <label for="name">Naam contactpersoon *</label><input id="name" name="name" required maxlength="150" autocomplete="name">
   <label for="email">E-mailadres *</label><input id="email" name="email" type="email" required maxlength="200" autocomplete="email">
   <label for="attendance">Zijn jullie erbij? *</label><select id="attendance" name="attendance" required><option value="">Kies een antwoord</option><option value="Ja">Met liefde aanwezig</option><option value="Nee">Helaas verhinderd</option></select>
-  <div id="more" hidden><label for="adults">Aantal volwassenen inclusief jezelf *</label><input id="adults" name="adults" type="number" value="1" min="1" max="20">
-  <label for="adultNames">Namen van de volwassen gasten *</label><textarea id="adultNames" name="adultNames" placeholder="Voor- en achternamen"></textarea>
+  <div id="more" hidden><label for="adults">Totaal aantal volwassenen (inclusief eventuele plus-one) *</label><input id="adults" name="adults" type="number" value="1" min="1" max="20">
+  <label for="adultNames">Namen volwassenen (zonder eventuele plus-one) *</label><textarea id="adultNames" name="adultNames" placeholder="Eén naam per regel; plus-one apart invullen"></textarea>
   <label for="children">Aantal kinderen (alle kinderen welkom)</label><input id="children" name="children" type="number" value="0" min="0" max="20">
   <label for="childNames">Namen van de kinderen</label><textarea id="childNames" name="childNames"></textarea>
   <label for="plusOne">Staat op jullie uitnodiging dat een extra gast is toegestaan?</label><select id="plusOne" name="plusOne"><option value="Nee">Nee</option><option value="Ja">Ja</option></select>
   <div id="plusFields" hidden><label for="plusOneName">Naam van extra gast *</label><input id="plusOneName" name="plusOneName"></div>
-  <p class="tip">Extra volwassen gasten zijn uitsluitend toegestaan wanneer dit op jullie persoonlijke uitnodiging staat; het systeem controleert deze toestemming.</p>
+  <p class="tip">Een plus-one telt mee in het totaal aantal volwassenen en in het maximale aantal op jullie uitnodiging. Geef diens naam alleen op in het plus-one-veld, niet dubbel in de namenlijst. Het systeem controleert de toestemming.</p>
   <label for="diet">Dieetwensen of allergieën</label><textarea id="diet" name="diet"></textarea><label for="accessibility">Toegankelijkheidswensen</label><textarea id="accessibility" name="accessibility"></textarea></div>
   <label for="message">Een berichtje voor ons</label><textarea name="message" id="message"></textarea>
   <button id="send" type="submit">Verstuur RSVP</button><div id="out" role="status" aria-live="polite"></div>
