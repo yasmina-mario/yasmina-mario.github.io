@@ -37,8 +37,6 @@ document.getElementById('unseal').addEventListener('click',()=>{gate.classList.a
 const churchVersion=new URLSearchParams(location.search).get('ceremony')==='yes';
 document.getElementById('church-panel').hidden=!churchVersion;
 if(!churchVersion){document.getElementById('venues').style.gridTemplateColumns='1fr';document.getElementById('venues').classList.add('venue-only')}
-function syncAttendance(){const yes=document.getElementById('attendance').value==='Ja';['adultnames','needs'].forEach(id=>document.getElementById(id).disabled=!yes);document.getElementById('adultnames').required=yes;const plus=yes&&document.getElementById('plusone').value==='Ja';document.getElementById('plusoneNameWrap').hidden=!plus;document.getElementById('plusoneName').disabled=!plus;document.getElementById('plusoneName').required=plus}
-document.getElementById('attendance').addEventListener('change',syncAttendance);syncAttendance();
 setLang('nl');
 // Set this after Google Apps Script web-app deployment and successful end-to-end test.
 const RSVP_WEBAPP_URL = "";
