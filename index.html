@@ -182,6 +182,12 @@ section:not(.hero):before{content:"";position:absolute;top:0;left:50%;width:130p
 .hero-border #open{position:relative;z-index:2;margin-bottom:0}
 .hero-border{padding-bottom:clamp(45px,7vw,85px)}
 @media(max-width:650px){.hero-border .bottomflourish{margin-top:46px}.hero-border{padding-bottom:52px}}
+
+/* Mobile-safe separation of CTA and ornament; override all earlier absolute positions */
+.hero-border .bottomflourish{position:static!important;display:block!important;align-self:center;margin:58px auto 0!important;transform:none!important;inset:auto!important;line-height:1!important}
+.hero-border #open{position:relative!important;z-index:3;margin-bottom:0!important}
+.hero-border{gap:0}
+@media(max-width:650px){.hero-border .bottomflourish{margin-top:64px!important}.hero-border{padding-bottom:70px!important}}
 </style></head>
 <body><div id="gate" class="gate"><div class="gate-scene"><div class="gate-blooms blooms-top" aria-hidden="true">✿ <span>❀</span> ✿</div><div class="gate-envelope" aria-hidden="true"><div class="gate-envelope-back"></div><div class="gate-envelope-floral gate-floral-left"></div><div class="gate-envelope-floral gate-floral-right"></div><div class="gate-letter"><div class="gate-letter-border"><div class="gate-letter-kicker">THE WEDDING OF</div><div class="gate-letter-names">Yasmina <em>&</em> Mario</div><div class="gate-letter-divider">✦</div><div class="gate-letter-date">30 OCTOBER 2027</div></div></div><div class="gate-flap"><span class="gate-flap-crest">❦</span></div><div class="gate-envelope-front"></div><div class="gate-seal"><span class="seal-monogram">Y<small>&</small>M</span></div></div><div class="gate-blooms blooms-bottom" aria-hidden="true">✿ <span>❀</span> ✿</div><button id="unseal" class="gate-open" data-t="open">Open de uitnodiging</button></div></div><header><a href="#top" class="monogram">Y <em>&</em> M</a><nav class="languages" aria-label="Language"><button data-lang="nl" class="selected">NL</button><button data-lang="en">EN</button><button data-lang="ar">عربي</button></nav></header><main id="top">
 <section class="hero"><div class="hero-border"><div class="flourish topflourish">❦</div><h1>Yasmina <em>&</em> Mario</h1><div class="line"></div><p class="date" data-t="date">Zaterdag 30 oktober 2027</p><p class="lead" data-t="chapter">A beautiful new chapter begins</p><button class="btn" id="open" data-t="open">Open de uitnodiging</button><div class="flourish bottomflourish">❦</div></div></section>
