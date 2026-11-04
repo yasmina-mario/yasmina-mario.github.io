@@ -258,6 +258,40 @@ body .hero .line{margin:0 auto}body .hero .flourish{display:none}
 body .hero .hero-rsvp{background:linear-gradient(#b69863,#89632f);border:1px solid #f0d9ab;border-radius:30px;text-decoration:none;font-size:14px;min-width:220px;min-height:46px;margin-top:4px}
 body .hero #open{background:transparent;border:0;box-shadow:none;color:#72582f;padding:5px 10px;font-size:10px}
 @media(max-width:600px){body .hero,body.has-wedding-photos .hero{padding:32px 12px;background-position:center;min-height:calc(100svh - 65px)}body .hero .hero-border{width:100%;padding:22px 10px;gap:20px;background:radial-gradient(ellipse,#fff8eced 25%,#fff8ec75 65%,transparent 78%)}body .hero h1{flex-direction:column;gap:0;font-size:clamp(48px,15vw,70px);line-height:1.04}body .hero h1 em{font-size:32px;line-height:1.2}.hero-count{gap:7px;max-width:340px}.hero-count strong{font-size:30px}.hero-count span{font-size:9px;letter-spacing:0}body .hero .lead{max-width:270px}body .hero .date{font-size:22px}}
+
+/* One continuous ivory, blush and antique-gold invitation. */
+:root{--ivory:#f7efe6;--paper:#fbf6ef;--dark:#594b3f;--brown:#887155;--champagne:#b49a70;--line:#dfcebb}
+body{background-color:var(--ivory)}
+header{background:#f7efe6ed}
+body .gate{background:linear-gradient(#f7efe6d9,#f7efe6ec),url('assets/homepage-zonder-tekst.webp') center/cover no-repeat;background-color:var(--ivory)}
+body.has-wedding-photos .gate-scene{width:min(96vw,760px);height:min(96svh,820px)}
+body.has-wedding-photos .gate-scene:before{border:0;outline:0;background:none;box-shadow:none}
+body.has-wedding-photos .gate-photo-stages{width:min(88vw,570px,72svh);border:0;filter:none;overflow:hidden;isolation:isolate;
+-webkit-mask-image:radial-gradient(ellipse at center,#000 48%,#000d 65%,transparent 76%);
+mask-image:radial-gradient(ellipse at center,#000 48%,#000d 65%,transparent 76%)}
+body.has-wedding-photos .gate-photo{filter:saturate(.65) sepia(.08);mix-blend-mode:multiply}
+body.has-wedding-photos .gate-open{margin-top:4px;background:linear-gradient(120deg,#a98b59,#bca173,#a98b59);box-shadow:0 8px 24px #8d75491a;border-color:#c7ad80}
+body .hero,body.has-wedding-photos .hero{
+background:linear-gradient(180deg,#f7efe66b 0%,#f7efe63d 45%,#f7efe6bd 85%,#f7efe6 100%),url('assets/homepage-zonder-tekst.webp') center/cover no-repeat;
+background-color:var(--ivory)}
+body .hero .hero-border,body.has-wedding-photos .hero-border{background:radial-gradient(ellipse,#fbf6efbb 25%,#fbf6ef00 74%)}
+body .hero h1{color:#947649;text-shadow:0 2px 18px #fbf6ef}
+body .hero .hero-rsvp{background:linear-gradient(120deg,#a98b59,#bca173,#a98b59);box-shadow:0 8px 24px #8d75491a}
+.hero-count>div{background:#fbf6efb3;border-color:#c9b38e}
+main>.invite,main>.paper{background:var(--paper)}
+main>.neutral{background:#eee3d6}
+main>section:not(.hero){background-image:radial-gradient(ellipse at 0 0,#e8cfc122,transparent 60%)}
+.panel{background:linear-gradient(145deg,#fcf8f1,#f4eade);border-color:#d6c2a4;box-shadow:0 12px 34px #8d75490d}
+.venue-art{filter:saturate(.75);mix-blend-mode:multiply}
+.motion-ready .motion-item{transition-duration:1.15s}
+body.invitation-entered .hero h1,body.invitation-entered .hero .date,body.invitation-entered .hero .lead,body.invitation-entered .hero-count,body.invitation-entered .hero-rsvp{animation:welcomeFloat 1.25s ease both}
+body.invitation-entered .hero .date{animation-delay:.12s}
+body.invitation-entered .hero .lead{animation-delay:.24s}
+body.invitation-entered .hero-count{animation-delay:.36s}
+body.invitation-entered .hero-rsvp{animation-delay:.48s}
+@keyframes welcomeFloat{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){body.has-wedding-photos .gate-photo-stages{width:min(96vw,68svh)}body .hero .hero-border{background:radial-gradient(ellipse,#fbf6efdc 25%,#fbf6ef44 68%,transparent 80%)}}
+
 </style></head>
 <body><div id="gate" class="gate"><div class="gate-scene"><div class="gate-top-monogram" aria-hidden="true">Y <span>&amp;</span> M</div><div class="gate-blooms blooms-top" aria-hidden="true">✿ <span>❀</span> ✿</div><div class="gate-envelope" aria-hidden="true"><div class="gate-envelope-back"></div><div class="gate-emboss gate-emboss-left" aria-hidden="true">❦</div><div class="gate-emboss gate-emboss-right" aria-hidden="true">❦</div><div class="gate-envelope-floral gate-floral-left"></div><div class="gate-envelope-floral gate-floral-right"></div><div class="gate-letter"><div class="gate-letter-border"><div class="gate-letter-kicker">THE WEDDING OF</div><div class="gate-letter-names">Yasmina <em>&</em> Mario</div><div class="gate-letter-divider">✦</div><div class="gate-letter-date">30 OCTOBER 2027</div></div></div><div class="gate-flap"><span class="gate-flap-crest">❦</span><span class="gate-flap-wreath">❧ ❦ ❧</span></div><div class="gate-envelope-front"></div><div class="gate-seal"><span class="seal-monogram">Y<small>&</small>M</span></div><div class="gate-envelope-flowers" aria-hidden="true"></div></div><div class="gate-blooms blooms-bottom" aria-hidden="true">✿ <span>❀</span> ✿</div><div class="gate-photo-stages" aria-hidden="true"><div class="gate-photo gate-photo-closed"></div><div class="gate-photo gate-photo-open"></div><div class="gate-photo gate-photo-card"></div></div><button id="unseal" class="gate-open" data-t="open">Open de uitnodiging</button></div></div><header><a href="#top" class="monogram">Y <em>&</em> M</a><nav class="languages" aria-label="Language"><button data-lang="nl" class="selected">NL</button><button data-lang="en">EN</button><button data-lang="ar">عربي</button></nav></header><main id="top">
 <section class="hero"><div class="hero-border"><div class="flourish topflourish">❦</div><h1><span>Yasmina</span> <em>&</em> <span>Mario</span></h1><div class="line"></div><p class="date" data-t="date">Zaterdag 30 oktober 2027</p><p class="lead" data-t="chapter">A beautiful new chapter begins</p><div class="hero-count" aria-label="Aftellen tot de bruiloft"><div><strong data-count-copy="days">—</strong><span data-t="days">dagen</span></div><div><strong data-count-copy="hours">—</strong><span data-t="hours">uren</span></div><div><strong data-count-copy="minutes">—</strong><span data-t="minutes">minuten</span></div><div><strong data-count-copy="seconds">—</strong><span data-t="seconds">seconden</span></div></div><a class="btn hero-rsvp" href="#rsvpLive">RSVP</a><button class="btn" id="open" data-t="open">Open de uitnodiging</button><div class="flourish bottomflourish">❦</div></div></section>
@@ -321,7 +355,7 @@ const gate=document.getElementById('gate');
  const assets=['envelop-gesloten.webp','envelop-open.webp','uitnodigingskaart.webp','homepage-zonder-tekst.webp'];
  Promise.all(assets.map(name=>new Promise((resolve,reject)=>{const img=new Image();img.onload=resolve;img.onerror=reject;img.src='assets/'+name}))).then(()=>document.body.classList.add('has-wedding-photos')).catch(()=>{});
 })();
-document.getElementById('unseal').addEventListener('click',()=>{if(document.body.classList.contains('has-wedding-photos')){setTimeout(()=>gate.classList.add('photo-stage-open'),400);setTimeout(()=>gate.classList.add('photo-stage-card'),1550)}gate.classList.add('unsealed');document.getElementById('invitation').classList.add('visible');setTimeout(()=>{gate.hidden=true;document.getElementById('open').focus({preventScroll:true})},3700)});
+document.getElementById('unseal').addEventListener('click',()=>{if(document.body.classList.contains('has-wedding-photos')){setTimeout(()=>gate.classList.add('photo-stage-open'),400);setTimeout(()=>gate.classList.add('photo-stage-card'),1550)}gate.classList.add('unsealed');document.getElementById('invitation').classList.add('visible');setTimeout(()=>{gate.hidden=true;document.body.classList.add('invitation-entered');window.dispatchEvent(new Event('invitation-opened'));document.getElementById('open').focus({preventScroll:true})},3700)});
 document.getElementById('open').addEventListener('click',()=>{const invitation=document.getElementById('invitation');invitation.classList.add('visible');invitation.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
 const churchVersion=new URLSearchParams(location.search).get('ceremony')==='yes';
 document.getElementById('church-panel').hidden=!churchVersion;
@@ -329,8 +363,8 @@ if(!churchVersion){document.getElementById('venues').style.gridTemplateColumns='
 
 setLang('nl');
 
-/* Scroll reveals on both URL variants. Keep content visible if scripting fails. */
-(function(){
+/* Start shared reveals after the envelope, so the overlay cannot consume them. */
+window.addEventListener('invitation-opened',function(){
  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
  const nodes=[...document.querySelectorAll('main section h2, main section .kicker, main section .panel, main section .programme article, main section .story article, main section .photo-strip, main section .practical details, main section .lead, main section .venue-art')];
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
@@ -340,7 +374,7 @@ setLang('nl');
  document.body.classList.add('motion-ready');
  // Fallback for unusual embedded browsers where observer events are delayed.
  window.addEventListener('scroll',()=>{nodes.forEach(el=>{if(!el.classList.contains('in-view')&&el.getBoundingClientRect().top<innerHeight-35)el.classList.add('in-view')})},{passive:true});
-})();
+},{once:true});
 
 // Mirror the existing countdown without changing its calculation or original section.
 (function(){const sync=()=>document.querySelectorAll('[data-count-copy]').forEach(el=>{el.textContent=document.getElementById(el.dataset.countCopy).textContent});sync();new MutationObserver(sync).observe(document.getElementById('days').parentElement.parentElement,{subtree:true,childList:true,characterData:true})})();
