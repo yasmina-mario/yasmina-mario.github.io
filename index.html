@@ -292,6 +292,32 @@ body.invitation-entered .hero-rsvp{animation-delay:.48s}
 @keyframes welcomeFloat{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:600px){body.has-wedding-photos .gate-photo-stages{width:min(96vw,68svh)}body .hero .hero-border{background:radial-gradient(ellipse,#fbf6efdc 25%,#fbf6ef44 68%,transparent 80%)}}
 
+
+/* Keep names inside the arch and retain the full botanical frame on phones. */
+body .hero .hero-border{width:min(760px,82%);padding:48px 20px;gap:18px}
+body .hero h1{flex-wrap:nowrap;gap:.25em;font-size:clamp(48px,6.2vw,88px);line-height:1.2;letter-spacing:-.025em;width:100%;margin:0 auto}
+body .hero h1 span{flex:0 1 auto}
+body .hero h1 em{flex:0 0 auto;margin:0 .08em}
+body .hero .date{letter-spacing:.12em;line-height:1.5}
+@media(min-width:601px) and (max-width:950px){body .hero h1{font-size:clamp(40px,6.2vw,59px)}}
+@media(max-width:600px){
+body .hero,body.has-wedding-photos .hero{
+padding:76px 16px 40px;min-height:calc(100svh - 65px);
+background-image:linear-gradient(180deg,#f7efe600 0px,#f7efe620 110px,#f7efe6d9 240px,#f7efe6 330px),url('assets/homepage-zonder-tekst.webp');
+background-size:100% 100%,100% auto;background-position:center top;background-repeat:no-repeat;background-color:#f7efe6}
+body .hero .hero-border,body.has-wedding-photos .hero-border{width:100%;padding:14px 4px 24px;gap:17px;background:none}
+body .hero h1{flex-direction:column;gap:4px;font-size:clamp(48px,14vw,64px);line-height:1.08;letter-spacing:-.02em}
+body .hero h1 em{font-size:29px;line-height:1.15;margin:0}
+body .hero .line{margin:5px auto 8px}
+body .hero .date{font-size:21px;letter-spacing:.045em;max-width:330px;margin-bottom:0}
+body .hero .lead{font-size:22px;line-height:1.4;max-width:285px;margin-bottom:4px}
+body .hero-count{margin:8px auto;max-width:340px;width:100%}
+body .hero-count>div{padding:10px 3px;background:#fbf6efc9}
+body .hero .hero-rsvp{margin:5px auto 0;min-width:210px}
+body .hero #open{margin-top:12px}
+body .hero .bottomflourish{position:relative;bottom:auto;margin-top:18px}
+}
+
 </style></head>
 <body><div id="gate" class="gate"><div class="gate-scene"><div class="gate-top-monogram" aria-hidden="true">Y <span>&amp;</span> M</div><div class="gate-blooms blooms-top" aria-hidden="true">✿ <span>❀</span> ✿</div><div class="gate-envelope" aria-hidden="true"><div class="gate-envelope-back"></div><div class="gate-emboss gate-emboss-left" aria-hidden="true">❦</div><div class="gate-emboss gate-emboss-right" aria-hidden="true">❦</div><div class="gate-envelope-floral gate-floral-left"></div><div class="gate-envelope-floral gate-floral-right"></div><div class="gate-letter"><div class="gate-letter-border"><div class="gate-letter-kicker">THE WEDDING OF</div><div class="gate-letter-names">Yasmina <em>&</em> Mario</div><div class="gate-letter-divider">✦</div><div class="gate-letter-date">30 OCTOBER 2027</div></div></div><div class="gate-flap"><span class="gate-flap-crest">❦</span><span class="gate-flap-wreath">❧ ❦ ❧</span></div><div class="gate-envelope-front"></div><div class="gate-seal"><span class="seal-monogram">Y<small>&</small>M</span></div><div class="gate-envelope-flowers" aria-hidden="true"></div></div><div class="gate-blooms blooms-bottom" aria-hidden="true">✿ <span>❀</span> ✿</div><div class="gate-photo-stages" aria-hidden="true"><div class="gate-photo gate-photo-closed"></div><div class="gate-photo gate-photo-open"></div><div class="gate-photo gate-photo-card"></div></div><button id="unseal" class="gate-open" data-t="open">Open de uitnodiging</button></div></div><header><a href="#top" class="monogram">Y <em>&</em> M</a><nav class="languages" aria-label="Language"><button data-lang="nl" class="selected">NL</button><button data-lang="en">EN</button><button data-lang="ar">عربي</button></nav></header><main id="top">
 <section class="hero"><div class="hero-border"><div class="flourish topflourish">❦</div><h1><span>Yasmina</span> <em>&</em> <span>Mario</span></h1><div class="line"></div><p class="date" data-t="date">Zaterdag 30 oktober 2027</p><p class="lead" data-t="chapter">A beautiful new chapter begins</p><div class="hero-count" aria-label="Aftellen tot de bruiloft"><div><strong data-count-copy="days">—</strong><span data-t="days">dagen</span></div><div><strong data-count-copy="hours">—</strong><span data-t="hours">uren</span></div><div><strong data-count-copy="minutes">—</strong><span data-t="minutes">minuten</span></div><div><strong data-count-copy="seconds">—</strong><span data-t="seconds">seconden</span></div></div><a class="btn hero-rsvp" href="#rsvpLive">RSVP</a><button class="btn" id="open" data-t="open">Open de uitnodiging</button><div class="flourish bottomflourish">❦</div></div></section>
