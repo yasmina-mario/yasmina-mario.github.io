@@ -15,7 +15,8 @@ const RESPONSES_TAB = 'Reacties';
 function doGet() {
   return HtmlService.createHtmlOutput(RSVP_HTML_())
     .setTitle('Yasmina & Mario — RSVP')
-    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 function submitRSVP(p) {
