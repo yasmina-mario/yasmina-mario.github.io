@@ -318,6 +318,40 @@ body .hero #open{margin-top:12px}
 body .hero .bottomflourish{position:relative;bottom:auto;margin-top:18px}
 }
 
+
+/* Hero typography containment fix. The mobile arch is tall enough for the names;
+   all other sections and desktop layout remain untouched. */
+@media (min-width: 601px) {
+  body .hero .hero-border,body.has-wedding-photos .hero-border{max-width:min(92vw,900px);box-sizing:border-box}
+  body .hero h1{max-width:100%;font-size:clamp(40px,5.3vw,74px);justify-content:center;align-items:center;text-align:center}
+}
+@media (max-width: 600px) {
+  body .hero,body.has-wedding-photos .hero{
+    background-image:linear-gradient(to bottom,rgba(247,239,230,0) 0,rgba(247,239,230,0) 245px,rgba(247,239,230,.88) 390px,#f7efe6 495px),url('assets/homepage-zonder-tekst.webp');
+    background-size:100% 100%,auto 450px;
+    background-position:center top,center top;
+    padding:110px 14px 35px;
+    box-sizing:border-box;
+  }
+  body .hero .hero-border,body.has-wedding-photos .hero-border{
+    width:100%;max-width:100%;box-sizing:border-box;padding:0 6px 22px;gap:14px;
+    background:transparent;
+  }
+  body .hero h1{
+    display:flex;flex-direction:column;flex-wrap:nowrap;
+    width:100%;max-width:100%;margin:0 auto;
+    gap:0;line-height:.91;
+    font-size:clamp(39px,11.7vw,56px);
+    letter-spacing:-.035em;text-align:center;
+  }
+  body .hero h1 span{display:block;white-space:nowrap;max-width:100%;flex:0 0 auto}
+  body .hero h1 em{font-size:.55em;line-height:1.05;margin:3px auto}
+  body .hero .line{margin:12px auto 0}
+  body .hero .date{margin-top:8px}
+}
+@media (max-width: 375px){
+  body .hero h1{font-size:clamp(36px,11.2vw,44px)}
+}
 </style></head>
 <body><div id="gate" class="gate"><div class="gate-scene"><div class="gate-top-monogram" aria-hidden="true">Y <span>&amp;</span> M</div><div class="gate-blooms blooms-top" aria-hidden="true">✿ <span>❀</span> ✿</div><div class="gate-envelope" aria-hidden="true"><div class="gate-envelope-back"></div><div class="gate-emboss gate-emboss-left" aria-hidden="true">❦</div><div class="gate-emboss gate-emboss-right" aria-hidden="true">❦</div><div class="gate-envelope-floral gate-floral-left"></div><div class="gate-envelope-floral gate-floral-right"></div><div class="gate-letter"><div class="gate-letter-border"><div class="gate-letter-kicker">THE WEDDING OF</div><div class="gate-letter-names">Yasmina <em>&</em> Mario</div><div class="gate-letter-divider">✦</div><div class="gate-letter-date">30 OCTOBER 2027</div></div></div><div class="gate-flap"><span class="gate-flap-crest">❦</span><span class="gate-flap-wreath">❧ ❦ ❧</span></div><div class="gate-envelope-front"></div><div class="gate-seal"><span class="seal-monogram">Y<small>&</small>M</span></div><div class="gate-envelope-flowers" aria-hidden="true"></div></div><div class="gate-blooms blooms-bottom" aria-hidden="true">✿ <span>❀</span> ✿</div><div class="gate-photo-stages" aria-hidden="true"><div class="gate-photo gate-photo-closed"></div><div class="gate-photo gate-photo-open"></div><div class="gate-photo gate-photo-card"></div></div><button id="unseal" class="gate-open" data-t="open">Open de uitnodiging</button></div></div><header><a href="#top" class="monogram">Y <em>&</em> M</a><nav class="languages" aria-label="Language"><button data-lang="nl" class="selected">NL</button><button data-lang="en">EN</button><button data-lang="ar">عربي</button></nav></header><main id="top">
 <section class="hero"><div class="hero-border"><div class="flourish topflourish">❦</div><h1><span>Yasmina</span> <em>&</em> <span>Mario</span></h1><div class="line"></div><p class="date" data-t="date">Zaterdag 30 oktober 2027</p><p class="lead" data-t="chapter">A beautiful new chapter begins</p><div class="hero-count" aria-label="Aftellen tot de bruiloft"><div><strong data-count-copy="days">—</strong><span data-t="days">dagen</span></div><div><strong data-count-copy="hours">—</strong><span data-t="hours">uren</span></div><div><strong data-count-copy="minutes">—</strong><span data-t="minutes">minuten</span></div><div><strong data-count-copy="seconds">—</strong><span data-t="seconds">seconden</span></div></div><a class="btn hero-rsvp" href="#rsvpLive">RSVP</a><button class="btn" id="open" data-t="open">Open de uitnodiging</button><div class="flourish bottomflourish">❦</div></div></section>
